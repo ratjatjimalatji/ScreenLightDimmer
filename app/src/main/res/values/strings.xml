@@ -17,4 +17,10 @@
     <string name="notification_title">Screen dimmer is on</string>
     <string name="switch_to_light_mode">Switch to light mode</string>
     <string name="switch_to_dark_mode">Switch to dark mode</string>
+    <string name="widget_name">Screen dimmer</string>
+    <string name="widget_description">Switch the dimmer on and adjust darkness from your home screen</string>
+    <string name="widget_status_on">On · darkness %1$d%%</string>
+    <string name="widget_status_off">Off · darkness %1$d%%</string>
+    <string name="darker">Darker</string>
+    <string name="lighter">Lighter</string>
 </resources>

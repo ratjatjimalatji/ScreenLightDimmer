@@ -58,6 +58,7 @@ class MainActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         dimmerViewModel.refreshPermission()
+        container.notifyObservers()
     }
 
     private fun requestOverlayPermission() {

@@ -1,6 +1,7 @@
 package com.example.screenlightsaver
 
 import android.app.Application
+import com.example.screenlightsaver.widget.WidgetDimmerStateObserver
 
 class ScreenLightApp : Application() {
     lateinit var container: AppContainer
@@ -8,6 +9,8 @@ class ScreenLightApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        container = AppContainer(this)
+        container = AppContainer(this).apply {
+            addObserver(WidgetDimmerStateObserver(this@ScreenLightApp, overlayPermissionChecker))
+        }
     }
 }

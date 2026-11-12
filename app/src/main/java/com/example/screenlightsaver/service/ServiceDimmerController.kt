@@ -10,7 +10,8 @@ import com.example.screenlightsaver.domain.OverlayPermissionChecker
 
 /**
  * Routes commands to [DimmerService] only when the overlay is (or will be) visible; otherwise
- * the new state is saved directly so no foreground service is started needlessly.
+ * the new state is saved directly so no foreground service is started needlessly. A running
+ * foreground service can be reached with startService() even from the background.
  */
 class ServiceDimmerController(
     private val context: Context,
@@ -21,11 +22,11 @@ class ServiceDimmerController(
     override fun dispatch(command: DimmerCommand) {
         val current = repository.state.value
         val next = DimmerStateReducer.reduce(current, command, permissionChecker.canDrawOverlays())
-        if (current.isActive || next.isActive) {
-            ContextCompat.startForegroundService(
-                context,
-                DimmerCommandIntents.toIntent(context, DimmerService::class.java, command),
-            )
+        val intent = DimmerCommandIntents.toIntent(context, DimmerService::class.java, command)
+        if (current.isActive) {
+            context.startService(intent)
+        } else if (next.isActive) {
+            ContextCompat.startForegroundService(context, intent)
         } else {
             repository.save(next)
         }
