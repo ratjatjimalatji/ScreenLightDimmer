@@ -15,4 +15,6 @@
     <string name="notification_channel_name">Screen dimmer</string>
     <string name="notification_channel_description">Keeps the dimming overlay active</string>
     <string name="notification_title">Screen dimmer is on</string>
+    <string name="switch_to_light_mode">Switch to light mode</string>
+    <string name="switch_to_dark_mode">Switch to dark mode</string>
 </resources>

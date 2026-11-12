@@ -1,35 +1,55 @@
 package com.example.screenlightsaver
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.provider.Settings
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.core.net.toUri
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.compose.runtime.getValue
 import com.example.screenlightsaver.ui.DimmerScreen
 import com.example.screenlightsaver.ui.DimmerViewModel
+import com.example.screenlightsaver.ui.ThemeToggleButton
+import com.example.screenlightsaver.ui.ThemeViewModel
 import com.example.screenlightsaver.ui.theme.ScreenLightTheme
 
 class MainActivity : ComponentActivity() {
 
     private val container get() = (application as ScreenLightApp).container
     private val dimmerViewModel: DimmerViewModel by viewModels { DimmerViewModel.factory(container) }
+    private val themeViewModel: ThemeViewModel by viewModels { ThemeViewModel.factory(container) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ScreenLightTheme {
+            val override by themeViewModel.darkModeOverride.collectAsStateWithLifecycle()
+            val isDark = override ?: isSystemInDarkTheme()
+            LaunchedEffect(isDark) {
+                val style = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { isDark }
+                enableEdgeToEdge(statusBarStyle = style, navigationBarStyle = style)
+            }
+
+            ScreenLightTheme(darkTheme = isDark) {
                 val state by dimmerViewModel.uiState.collectAsStateWithLifecycle()
                 DimmerScreen(
                     state = state,
                     onRequestPermission = ::requestOverlayPermission,
                     onToggleDimmer = dimmerViewModel::onToggleDimmer,
                     onLevelChange = dimmerViewModel::onLevelChange,
+                    topBarActions = {
+                        ThemeToggleButton(
+                            isDark = isDark,
+                            onToggle = { themeViewModel.onToggleLightMode(isDark) },
+                        )
+                    },
                 )
             }
         }
