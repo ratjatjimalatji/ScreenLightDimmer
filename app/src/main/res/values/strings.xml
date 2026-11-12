@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">ScreenLightSaver</string>
+    <string name="app_name">Screen Light Dimmer</string>
+    <string name="app_title">Screen Dimmer</string>
+    <string name="app_subtitle">Go darker than the system minimum</string>
+    <string name="status_active">dimming</string>
+    <string name="status_inactive">off</string>
+    <string name="turn_on">Turn on</string>
+    <string name="turn_off">Turn off</string>
+    <string name="darkness_level">Darkness level</string>
+    <string name="darkness_percent">Darkness %1$d%%</string>
+    <string name="permission_title">Permission needed</string>
+    <string name="permission_body">To dim the screen above other apps, allow \"Display over other apps\".</string>
+    <string name="grant_permission">Grant permission</string>
+    <string name="widget_tip">Tip: add the Screen Dimmer widget to your home screen to switch it on and change the darkness from anywhere.</string>
+    <string name="notification_channel_name">Screen dimmer</string>
+    <string name="notification_channel_description">Keeps the dimming overlay active</string>
+    <string name="notification_title">Screen dimmer is on</string>
 </resources>
