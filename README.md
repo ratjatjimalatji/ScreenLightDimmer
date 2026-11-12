@@ -2,6 +2,8 @@
 
 Android app that dims your screen below the system's minimum brightness, for late-night scrolling without eye strain. It draws a soft black layer over everything on screen. You can turn it on and adjust it from the app, the home-screen widget or the notification.
 
+The screenshots below are taken with the phone at it's LOWEST brightness. 
+
 ![Before and after: home screen with the dimmer off, at 40% and at 80%](docs/images/before-after.png)
 
 ## How much darker?
