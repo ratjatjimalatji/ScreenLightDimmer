@@ -3,10 +3,12 @@ package com.example.screenlightsaver
 import android.content.Context
 import com.example.screenlightsaver.data.AndroidOverlayPermissionChecker
 import com.example.screenlightsaver.data.SharedPreferencesDimmerStateRepository
+import com.example.screenlightsaver.data.SharedPreferencesOnboardingRepository
 import com.example.screenlightsaver.data.SharedPreferencesThemeRepository
 import com.example.screenlightsaver.domain.DimmerController
 import com.example.screenlightsaver.domain.DimmerStateObserver
 import com.example.screenlightsaver.domain.DimmerStateRepository
+import com.example.screenlightsaver.domain.OnboardingRepository
 import com.example.screenlightsaver.domain.OverlayPermissionChecker
 import com.example.screenlightsaver.domain.ThemePreferenceRepository
 import com.example.screenlightsaver.service.ServiceDimmerController
@@ -23,6 +25,7 @@ class AppContainer(context: Context) {
 
     val overlayPermissionChecker: OverlayPermissionChecker = AndroidOverlayPermissionChecker(appContext)
     val dimmerStateRepository: DimmerStateRepository = SharedPreferencesDimmerStateRepository(appContext)
+    val onboardingRepository: OnboardingRepository = SharedPreferencesOnboardingRepository(appContext)
     val themePreferenceRepository: ThemePreferenceRepository = SharedPreferencesThemeRepository(appContext)
     val dimmerController: DimmerController =
         ServiceDimmerController(appContext, dimmerStateRepository, overlayPermissionChecker)
