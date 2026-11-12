@@ -23,4 +23,11 @@
     <string name="widget_status_off">Off · darkness %1$d%%</string>
     <string name="darker">Darker</string>
     <string name="lighter">Lighter</string>
+    <string name="onboarding_title">Scroll late without the strain</string>
+    <string name="onboarding_body">Screen Light Dimmer places a soft dark layer over everything on your screen. To do that, it needs permission to display over other apps. Allowing it means better late-night scrolling without eye strain.</string>
+    <string name="onboarding_benefit_dimmer">Go darker than your phone\'s lowest brightness setting</string>
+    <string name="onboarding_benefit_eyes">Less glare and eye strain when reading in the dark</string>
+    <string name="onboarding_benefit_privacy">The layer only dims. It never reads or records your screen</string>
+    <string name="onboarding_allow">Allow display over other apps</string>
+    <string name="onboarding_later">Maybe later</string>
 </resources>
